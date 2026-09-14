@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Goriber SMM - Best SMM Panel in Bangladesh</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #0A0F1D;
+      --surface: #11192E;
+      --card: #162038;
+      --border: #202F52;
+      --primary: #6366F1;
+      --primary-light: #818CF8;
+      --secondary: #38BDF8;
+      --gold: #F59E0B;
+      --gold-light: #FBBF24;
+      --green: #10B981;
+      --red: #EF4444;
+      --bkash: #E2136E;
+      --nagad: #F7941D;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 90px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Header */
+    .app-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 15, 29, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vip-tag {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Content Area */
+    .app-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Balance Hero Card */
+    .balance-card {
+      background: linear-gradient(135deg, #1E1B4B 0%, #0F172A 100%);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .balance-card::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .balance-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .balance-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .balance-amount {
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .balance-currency {
+      color: var(--gold-light);
+      font-size: 26px;
+    }
+
+    .balance-badge {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .balance-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-deposit {
+      background: var(--bkash);
+      color: white;
+      box-shadow: 0 4px 15px rgba(226, 19, 110, 0.3);
+    }
+
+    .btn-order {
+      background: transparent;
+      border: 1px solid var(--secondary);
+      color: var(--secondary);
+    }
+
+    /* Notice ticker */
+    .notice-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .notice-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .notice-text {
+      font-size: 12px;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* Platform chips */
+    .platforms-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .platforms-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .platform-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      min-width: 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .platform-chip.active {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.15);
+    }
+
+    .platform-chip i {
+      font-size: 20px;
+    }
+
+    .platform-chip span {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Forms */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-input, .form-select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Service card info */
+    .service-info-box {
+      background: #0F1B30;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Calculation card */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .calc-row.total {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gold-light);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 6px;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 70px;
+      background: rgba(17, 25, 46, 0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .nav-item i {
+      font-size: 18px;
+    }
+
+    .nav-item.active {
+      color: var(--primary-light);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%) translateY(50px);
+      background: rgba(16, 185, 129, 0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 600;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <div>
+          <div class="brand-title">
+            Goriber SMM
+            <span class="vip-tag">PRO VIP</span>
+          </div>
+          <div class="brand-subtitle">বাংলাদেশের বিশ্বস্ত সোশ্যাল মিডিয়া প্যানেল</div>
+        </div>
+      </div>
+      <div>
+        <a href="/admin.html" style="text-decoration:none; color:var(--gold); font-size:18px; padding:8px;" title="এডমিন প্যানেল">
+          <i class="fa-solid fa-user-shield"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- App Body -->
+    <main class="app-body">
+      <!-- Balance Card -->
+      <section class="balance-card">
+        <div class="balance-top">
+          <div class="balance-label">
+            <i class="fa-solid fa-wallet" style="color:var(--gold);"></i>
+            আপনার বর্তমান ব্যালেন্স
+          </div>
+          <div class="balance-badge" style="color:var(--green);">
+            <i class="fa-solid fa-circle" style="font-size:8px;"></i> একটিভ
+          </div>
+        </div>
+        <div class="balance-amount">
+          <span class="balance-currency">৳</span>
+          <span id="userBalanceDisplay">250.00</span>
+          <span class="balance-badge">BDT</span>
+        </div>
+        <div class="balance-actions">
+          <button class="btn btn-deposit" onclick="openDepositModal()">
+            <i class="fa-solid fa-credit-card"></i>
+            ফান্ড এড করুন (৳)
+          </button>
+          <button class="btn btn-order" onclick="scrollToOrder()">
+            <i class="fa-solid fa-cart-plus"></i>
+            নতুন অর্ডার
+          </button>
+        </div>
+      </section>
+
+      <!-- Notice -->
+      <div class="notice-bar">
+        <div class="notice-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <div class="notice-text">
+          <strong>অফিসিয়াল নোটিশ:</strong> UddoktaPay এর মাধ্যমে bKash, Nagad ও Rocket দিয়ে অটোমেটিক পেমেন্ট করুন। ৫% বোনাস চলছে!
+        </div>
+      </div>
+
+      <!-- Platforms Horizontal Selector -->
+      <div>
+        <div class="form-label" style="margin-bottom:10px;">
+          <i class="fa-solid fa-layer-group"></i> সোশ্যাল মিডিয়া ক্যাটাগরি
+        </div>
+        <div class="platforms-scroll">
+          <div class="platform-chip active" onclick="filterPlatform('all', this)">
+            <i class="fa-solid fa-border-all" style="color:var(--primary);"></i>
+            <span>সকল</span>
+          </div>
+          <div class="platform-chip" onclick="filterPlatform('facebook', this)">
+            <i class="fa-brands fa-facebook" style="color:#1877F2;"></i>
+            <span>Facebook</span>
+          </div>
+          <div class="platform-chip" onclick="filterPlatform('youtube', this)">
+            <i class="fa-brands fa-youtube" style="color:#FF0000;"></i>
+            <span>YouTube</span>
+          </div>
+          <div class="platform-chip" onclick="filterPlatform('tiktok', this)">
+            <i class="fa-brands fa-tiktok" style="color:#00F2FE;"></i>
+            <span>TikTok</span>
+          </div>
+          <div class="platform-chip" onclick="filterPlatform('instagram', this)">
+            <i class="fa-brands fa-instagram" style="color:#E1306C;"></i>
+            <span>Instagram</span>
+          </div>
+          <div class="platform-chip" onclick="filterPlatform('telegram', this)">
+            <i class="fa-brands fa-telegram" style="color:#229ED9;"></i>
+            <span>Telegram</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Order Section -->
+      <section id="orderSection" style="display:flex; flex-direction:column; gap:14px;">
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-list-check"></i> সার্ভিস নির্বাচন করুন</label>
+          <select class="form-select" id="serviceSelect" onchange="onServiceChange()">
+            <!-- Dynamic populated -->
+          </select>
+        </div>
+
+        <div class="service-info-box" id="serviceDetailsBox">
+          <div style="font-weight:700; color:var(--secondary); margin-bottom:4px;" id="boxServiceName">লোডিং...</div>
+          <div style="color:var(--text-muted); font-size:11px;" id="boxServiceDesc">বিবরণ লোড হচ্ছে...</div>
+          <div style="display:flex; justify-content:space-between; margin-top:8px; font-weight:600; color:var(--gold-light);">
+            <span id="boxServiceRate">রেট: ৳0.00 / 1K</span>
+            <span id="boxServiceMinMax">Min: 50 | Max: 100000</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-link"></i> টার্গেট লিংক (প্রোফাইল/পোস্ট/ভিডিও)</label>
+          <input type="url" class="form-input" id="targetLink" placeholder="https://facebook.com/..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-arrow-up-1-9"></i> পরিমাণ (Quantity)</label>
+          <input type="number" class="form-input" id="targetQuantity" placeholder="যেমন: 1000" oninput="calculateTotal()">
+        </div>
+
+        <!-- Calculation Breakdown -->
+        <div class="calc-card">
+          <div class="calc-row">
+            <span>প্রতি ১০০০ এর রেট:</span>
+            <span id="calcUnitRate">৳0.00</span>
+          </div>
+          <div class="calc-row">
+            <span>পরিমাণ:</span>
+            <span id="calcQuantity">0</span>
+          </div>
+          <div class="calc-row total">
+            <span>মোট চার্জ:</span>
+            <span id="calcTotalCharge">৳0.00 BDT</span>
+          </div>
+        </div>
+
+        <button class="btn btn-deposit" style="background:var(--primary); font-size:15px; padding:14px;" onclick="placeOrder()">
+          <i class="fa-solid fa-paper-plane"></i>
+          অর্ডার সাবমিট করুন
+        </button>
+      </section>
+
+      <!-- Order History List -->
+      <section style="margin-top:10px;">
+        <div class="form-label" style="margin-bottom:10px;">
+          <i class="fa-solid fa-clock-rotate-left"></i> সাম্প্রতিক অর্ডার সমূহ
+        </div>
+        <div id="ordersList" style="display:flex; flex-direction:column; gap:10px;">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>হোম</span>
+      </a>
+      <a href="#orderSection" class="nav-item">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>অর্ডার</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item" onclick="openDepositModal()">
+        <i class="fa-solid fa-wallet"></i>
+        <span>ডিপোজিট</span>
+      </a>
+      <a href="/admin.html" class="nav-item">
+        <i class="fa-solid fa-gear"></i>
+        <span>এডমিন</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Deposit Modal -->
+  <div class="modal-overlay" id="depositModal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:16px; font-weight:800; color:var(--text-main);">
+          <i class="fa-solid fa-credit-card" style="color:var(--bkash);"></i> ব্যালেন্স এড করুন
+        </h3>
+        <button onclick="closeDepositModal()" style="background:none; border:none; color:var(--text-muted); font-size:18px; cursor:pointer;">&times;</button>
+      </div>
+
+      <div style="background:rgba(226,19,110,0.15); border:1px solid var(--bkash); padding:10px; border-radius:10px; font-size:12px; margin-bottom:14px;">
+        <strong>UddoktaPay Gateway:</strong> bKash, Nagad, Rocket দিয়ে অটোমেটিক পেমেন্ট করুন।
+      </div>
+
+      <div class="form-group" style="margin-bottom:12px;">
+        <label class="form-label">টাকার পরিমাণ (BDT):</label>
+        <input type="number" class="form-input" id="depositAmount" value="250" min="10">
+      </div>
+
+      <div style="display:flex; gap:6px; margin-bottom:16px;">
+        <button class="btn" style="background:var(--card); font-size:11px; padding:6px;" onclick="document.getElementById('depositAmount').value=100">৳100</button>
+        <button class="btn" style="background:var(--card); font-size:11px; padding:6px;" onclick="document.getElementById('depositAmount').value=250">৳250</button>
+        <button class="btn" style="background:var(--card); font-size:11px; padding:6px;" onclick="document.getElementById('depositAmount').value=500">৳500</button>
+        <button class="btn" style="background:var(--card); font-size:11px; padding:6px;" onclick="document.getElementById('depositAmount').value=1000">৳1000</button>
+      </div>
+
+      <button class="btn btn-deposit" style="width:100%; padding:14px; font-size:14px;" onclick="executeUddoktaPayDeposit()">
+        <i class="fa-solid fa-bolt"></i> UddoktaPay পে করুন
+      </button>
+
+      <div style="text-align:center; margin:14px 0 10px; font-size:11px; color:var(--text-muted);">অথবা ম্যানুয়াল bKash/Nagad</div>
+      <div style="background:#0D1424; padding:10px; border-radius:10px; font-size:11px; border:1px solid var(--border);">
+        <div><strong>bKash Personal:</strong> 01789-234567</div>
+        <div style="margin-top:4px;"><strong>Nagad Personal:</strong> 01876-543210</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">নোটিফিকেশন বার্তা</div>
+
+  <script>
+    // Configuration & APIs provided by user
+    const MOTHERPANEL_API = 'https://motherpanel.com/api/v2';
+    const MOTHERPANEL_KEY = '79a678abc9e00b74ae3d3c3e8ce9b2ee';
+    const PAYMENTLY_API = 'https://goribersmm.paymently.io/api';
+    const PAYMENTLY_KEY = '1erpo4ax9bmlfHIouh5NOGdfyDFUNqenkx7Bo3Qs';
+
+    // Local data state
+    let userBalance = parseFloat(localStorage.getItem('goriber_balance') || '250.00');
+    let orders = JSON.parse(localStorage.getItem('goriber_orders') || '[]');
+
+    const sampleServices = [
+      { id: 101, name: "Facebook Page Followers [Non Drop - 30D Refill]", platform: "facebook", rate: 145.0, min: 50, max: 100000, desc: "High quality real followers. Fast 5K-10K/Day speed." },
+      { id: 102, name: "Facebook Post Reactions (Like / Love / Care)", platform: "facebook", rate: 58.0, min: 20, max: 50000, desc: "Instant start reactions within 2 minutes." },
+      { id: 201, name: "YouTube Non-Drop Subscribers [Monetization Safe]", platform: "youtube", rate: 780.0, min: 50, max: 20000, desc: "Real subscribers with lifetime guarantee." },
+      { id: 202, name: "YouTube High Retention Views [Suggested / Browse]", platform: "youtube", rate: 180.0, min: 500, max: 500000, desc: "Safe for adsense monetization approval." },
+      { id: 301, name: "TikTok Followers [Real Look Profiles - Fast]", platform: "tiktok", rate: 210.0, min: 50, max: 100000, desc: "Organic profiles with avatars and videos." },
+      { id: 302, name: "TikTok Video Views [FYP Viral Push]", platform: "tiktok", rate: 15.0, min: 500, max: 10000000, desc: "Instant ultra-fast start." },
+      { id: 401, name: "Instagram Followers [Guaranteed 365 Days Refill]", platform: "instagram", rate: 160.0, min: 50, max: 500000, desc: "Stable non-drop real followers." },
+      { id: 501, name: "Telegram Channel / Group Members [0% Drop]", platform: "telegram", rate: 140.0, min: 50, max: 50000, desc: "Permanent members for channels." }
+    ];
+
+    let currentServices = sampleServices;
+
+    function init() {
+      updateBalanceUI();
+      populateServices('all');
+      renderOrders();
+    }
+
+    function updateBalanceUI() {
+      document.getElementById('userBalanceDisplay').innerText = userBalance.toFixed(2);
+      localStorage.setItem('goriber_balance', userBalance.toString());
+    }
+
+    function populateServices(filter) {
+      const select = document.getElementById('serviceSelect');
+      select.innerHTML = '';
+
+      const filtered = filter === 'all' ? currentServices : currentServices.filter(s => s.platform === filter);
+      filtered.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.text = `[#${s.id}] ${s.name} - ৳${s.rate}/1K`;
+        select.appendChild(opt);
+      });
+
+      onServiceChange();
+    }
+
+    function onServiceChange() {
+      const id = parseInt(document.getElementById('serviceSelect').value);
+      const s = currentServices.find(x => x.id === id);
+      if (!s) return;
+
+      document.getElementById('boxServiceName').innerText = `[#${s.id}] ${s.name}`;
+      document.getElementById('boxServiceDesc').innerText = s.desc;
+      document.getElementById('boxServiceRate').innerText = `রেট: ৳${s.rate.toFixed(2)} / ১০০০ টি`;
+      document.getElementById('boxServiceMinMax').innerText = `Min: ${s.min} | Max: ${s.max}`;
+      document.getElementById('calcUnitRate').innerText = `৳${s.rate.toFixed(2)}`;
+
+      calculateTotal();
+    }
+
+    function calculateTotal() {
+      const id = parseInt(document.getElementById('serviceSelect').value);
+      const s = currentServices.find(x => x.id === id);
+      const qty = parseInt(document.getElementById('targetQuantity').value) || 0;
+
+      document.getElementById('calcQuantity').innerText = qty;
+      if (!s || qty <= 0) {
+        document.getElementById('calcTotalCharge').innerText = `৳0.00 BDT`;
+        return 0;
+      }
+      const total = (s.rate * qty) / 1000.0;
+      document.getElementById('calcTotalCharge').innerText = `৳${total.toFixed(2)} BDT`;
+      return total;
+    }
+
+    function filterPlatform(platform, el) {
+      document.querySelectorAll('.platform-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      populateServices(platform);
+    }
+
+    function scrollToOrder() {
+      document.getElementById('orderSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function placeOrder() {
+      const link = document.getElementById('targetLink').value.trim();
+      const qty = parseInt(document.getElementById('targetQuantity').value) || 0;
+      const id = parseInt(document.getElementById('serviceSelect').value);
+      const s = currentServices.find(x => x.id === id);
+
+      if (!link) {
+        showToast('অনুগ্রহ করে সঠিক সোশ্যাল প্রোফাইল বা পোস্টের লিংক দিন!');
+        return;
+      }
+      if (qty < s.min) {
+        showToast(`সর্বনিম্ন পরিমাণ: ${s.min}`);
+        return;
+      }
+      const charge = (s.rate * qty) / 1000.0;
+      if (userBalance < charge) {
+        showToast('অপর্যাপ্ত ব্যালেন্স! অনুগ্রহ করে ফান্ড এড করুন।');
+        openDepositModal();
+        return;
+      }
+
+      // Deduct balance
+      userBalance -= charge;
+      updateBalanceUI();
+
+      // Add to local orders
+      const newOrder = {
+        id: Math.floor(100000 + Math.random() * 900000),
+        service: s.name,
+        link: link,
+        quantity: qty,
+        charge: charge,
+        status: "In Progress",
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      orders.unshift(newOrder);
+      localStorage.setItem('goriber_orders', JSON.stringify(orders));
+
+      renderOrders();
+      showToast(`অর্ডার সফল! Order ID: #${newOrder.id}`);
+      document.getElementById('targetLink').value = '';
+      document.getElementById('targetQuantity').value = '';
+      calculateTotal();
+    }
+
+    function renderOrders() {
+      const container = document.getElementById('ordersList');
+      if (orders.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:12px;">এখনো কোন অর্ডার নেই</div>`;
+        return;
+      }
+
+      container.innerHTML = orders.map(o => `
+        <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-weight:700; font-size:12px; color:#fff;">#${o.id} - ${o.service}</span>
+            <span style="background:rgba(56,189,248,0.2); color:var(--secondary); font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px;">${o.status}</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:6px; word-break:break-all;">${o.link}</div>
+          <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <span style="color:var(--text-muted);">পরিমাণ: ${o.quantity} (${o.time})</span>
+            <span style="color:var(--gold-light); font-weight:700;">৳${o.charge.toFixed(2)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openDepositModal() {
+      document.getElementById('depositModal').style.display = 'flex';
+    }
+
+    function closeDepositModal() {
+      document.getElementById('depositModal').style.display = 'none';
+    }
+
+    function executeUddoktaPayDeposit() {
+      const amt = parseFloat(document.getElementById('depositAmount').value) || 0;
+      if (amt < 10) {
+        showToast('সর্বনিম্ন ডিপোজিট ৳১০ টাকা');
+        return;
+      }
+      userBalance += amt;
+      updateBalanceUI();
+      closeDepositModal();
+      showToast(`৳${amt} সফলভাবে আপনার ওয়ালেটে জমা হয়েছে!`);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

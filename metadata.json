@@ -1,0 +1,6 @@
+{
+  "name": "Goriber SMM",
+  "description": "Goriber SMM - Premier Social Media Marketing Panel for Bangladesh with automated UddoktaPay gateway and MotherPanel API integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

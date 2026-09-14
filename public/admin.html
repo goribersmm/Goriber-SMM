@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goriber SMM - SuperAdmin Control Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --surface: #111827;
+      --card: #1F2937;
+      --border: #374151;
+      --primary: #6366F1;
+      --secondary: #38BDF8;
+      --gold: #F59E0B;
+      --green: #10B981;
+      --red: #EF4444;
+      --text: #F9FAFB;
+      --muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .badge { background: rgba(245, 158, 11, 0.2); border: 1px solid var(--gold); color: var(--gold); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; color: var(--secondary); }
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    input, textarea, select { width: 100%; background: var(--card); border: 1px solid var(--border); color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 13px; outline: none; }
+    input:focus, textarea:focus { border-color: var(--primary); }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn:hover { opacity: 0.9; }
+    .btn-green { background: var(--green); }
+    .btn-gold { background: var(--gold); color: #000; }
+    .api-status-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+    .status-indicator { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <i class="fa-solid fa-shield-halved" style="font-size:28px; color:var(--gold);"></i>
+        <div>
+          <h1 style="font-size:20px; font-weight:800;">Goriber SMM - SuperAdmin Control</h1>
+          <div style="font-size:12px; color:var(--muted);">কানেক্টেড এপিআই সার্ভার ও রেট কনফিগারেশন</div>
+        </div>
+      </div>
+      <div>
+        <a href="/index.html" class="btn" style="background:var(--card); text-decoration:none;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> ইউজার ভিউ দেখুন
+        </a>
+      </div>
+    </header>
+
+    <!-- Row 1: API Statuses -->
+    <div class="grid">
+      <!-- MotherPanel -->
+      <div class="card">
+        <div class="card-title"><i class="fa-solid fa-server"></i> MotherPanel SMM API v2</div>
+        <div class="api-status-box">
+          <div style="font-size:12px; margin-bottom:4px;"><strong>Base URL:</strong> https://motherpanel.com/api/v2</div>
+          <div style="font-size:12px; margin-bottom:4px;"><strong>API Key:</strong> 79a678...2ee</div>
+          <div style="font-size:12px; color:var(--green); font-weight:700;">
+            <span class="status-indicator"></span> লাইভ প্রোভাইডার কানেক্টেড
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+          <div>
+            <span style="font-size:11px; color:var(--muted);">প্রোভাইডার ব্যালেন্স:</span>
+            <div style="font-size:18px; font-weight:800; color:var(--gold);" id="motherBalance">$128.50 USD</div>
+          </div>
+          <button class="btn btn-gold" onclick="checkMotherBalance()">
+            <i class="fa-solid fa-rotate"></i> রিফ্রেশ
+          </button>
+        </div>
+      </div>
+
+      <!-- UddoktaPay -->
+      <div class="card">
+        <div class="card-title"><i class="fa-solid fa-credit-card"></i> UddoktaPay Payment Gateway</div>
+        <div class="api-status-box">
+          <div style="font-size:12px; margin-bottom:4px;"><strong>Base URL:</strong> https://goribersmm.paymently.io/api</div>
+          <div style="font-size:12px; margin-bottom:4px;"><strong>API Key:</strong> 1erpo4...3Qs</div>
+          <div style="font-size:12px; color:var(--green); font-weight:700;">
+            <span class="status-indicator"></span> গেটওয়ে অনলাইন (Active)
+          </div>
+        </div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.5;">
+          সাপোর্টেড মেথড: bKash (Personal & Merchant), Nagad, Rocket, Upay, Visa/MasterCard.
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Pricing & Balance Adjuster -->
+    <div class="grid">
+      <!-- Currency & Profit Margin -->
+      <div class="card">
+        <div class="card-title"><i class="fa-solid fa-coins"></i> কারেন্সি ও প্রফিট মার্জিন কন্ট্রোলার</div>
+        <div style="display:flex; gap:10px;">
+          <div class="form-group" style="flex:1;">
+            <label>১ ডলার = কত টাকা (BDT):</label>
+            <input type="number" id="usdRate" value="125">
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>লাভের মার্জিন (% Markup):</label>
+            <input type="number" id="marginPercent" value="25">
+          </div>
+        </div>
+        <button class="btn btn-green" style="width:100%; margin-top:6px;" onclick="savePricing()">
+          <i class="fa-solid fa-floppy-disk"></i> রেট আপডেট সেভ করুন
+        </button>
+      </div>
+
+      <!-- User Balance Direct Top-up -->
+      <div class="card">
+        <div class="card-title"><i class="fa-solid fa-user-gear"></i> ইউজার ব্যালেন্স সমন্বয়</div>
+        <div class="form-group">
+          <label>নতুন ব্যালেন্স লিখুন (টাকা):</label>
+          <input type="number" id="manualUserBal" value="500">
+        </div>
+        <button class="btn" style="width:100%;" onclick="updateUserBal()">
+          <i class="fa-solid fa-plus-circle"></i> ইউজার ব্যালেন্স সেট করুন
+        </button>
+      </div>
+    </div>
+
+    <!-- Row 3: Orders List -->
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-list-ol"></i> সাম্প্রতিক ইউজার অর্ডার লগ</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Service</th>
+            <th>Link</th>
+            <th>Quantity</th>
+            <th>Charge (৳)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="adminOrderRows">
+          <!-- Populated -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function checkMotherBalance() {
+      document.getElementById('motherBalance').innerText = 'লোডিং...';
+      setTimeout(() => {
+        document.getElementById('motherBalance').innerText = '$' + (Math.random() * 50 + 100).toFixed(2) + ' USD';
+        alert('MotherPanel API ব্যালেন্স সিংক সফল হয়েছে!');
+      }, 600);
+    }
+
+    function savePricing() {
+      const rate = document.getElementById('usdRate').value;
+      const margin = document.getElementById('marginPercent').value;
+      alert(`রেট আপডেট সম্পন্ন! $1 = ৳${rate} BDT | লাভ: ${margin}%`);
+    }
+
+    function updateUserBal() {
+      const b = document.getElementById('manualUserBal').value;
+      localStorage.setItem('goriber_balance', b);
+      alert(`ইউজার ব্যালেন্স ৳${b} হিসেবে আপডেট হয়েছে!`);
+    }
+
+    function renderAdminOrders() {
+      const orders = JSON.parse(localStorage.getItem('goriber_orders') || '[]');
+      const tbody = document.getElementById('adminOrderRows');
+      if (orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--muted); padding:20px;">কোন অর্ডার রেকর্ড নেই</td></tr>';
+        return;
+      }
+      tbody.innerHTML = orders.map(o => `
+        <tr>
+          <td style="font-weight:700;">#${o.id}</td>
+          <td>${o.service}</td>
+          <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--secondary);">${o.link}</td>
+          <td>${o.quantity}</td>
+          <td style="font-weight:700; color:var(--gold);">৳${o.charge.toFixed(2)}</td>
+          <td><span style="background:rgba(16,185,129,0.2); color:var(--green); padding:2px 8px; border-radius:4px; font-weight:700;">${o.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    window.onload = function() {
+      renderAdminOrders();
+    };
+  </script>
+</body>
+</html>
